@@ -6,7 +6,7 @@ async function conexao() {
         host: "localhost",
         port: 3306,
         user: "root",
-        password: "Leticia@25",
+        password: "",
         database: "quiz_belieber"
     })
 
