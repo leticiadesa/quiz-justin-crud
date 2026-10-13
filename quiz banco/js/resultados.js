@@ -16,6 +16,34 @@ function mostrarAviso(msg, erro = false){
     aviso.className = erro ? "aviso erro" : "aviso";
 }
 
+function estrelas(pontos, total){
+    let html = "";
+    for(let i = 1; i <= total; i++){
+        html += `<span class="${i <= pontos ? "on" : ""}">★</span>`;
+    }
+    return html;
+}
+
+function posicaoTexto(n){
+    if(n === 1) return "🥇";
+    if(n === 2) return "🥈";
+    if(n === 3) return "🥉";
+    return n + "º";
+}
+
+// Números do topo: participantes, média e melhor nota
+function atualizarNumeros(dados){
+
+    const total = dados.length;
+    const soma = dados.reduce((acc, r) => acc + Number(r.pontos), 0);
+    const melhor = total ? Math.max(...dados.map(r => Number(r.pontos))) : 0;
+
+    document.getElementById("stat-total").textContent = total;
+    document.getElementById("stat-media").textContent =
+        total ? (soma / total).toFixed(1).replace(".", ",") : "0";
+    document.getElementById("stat-melhor").textContent = melhor + "/5";
+}
+
 // ---------- READ: busca os dados no banco e mostra na tela ----------
 async function carregar(){
 
@@ -24,26 +52,36 @@ async function carregar(){
         const dados = await resp.json();
 
         if(!resp.ok){
-           mostrarAviso(dados.erro || "Erro no servidor.", true);
-           return;
-        }
-
-        if(dados.length === 0){
-            lista.innerHTML = `<tr><td colspan="5" class="vazio">Nenhum resultado salvo ainda. Jogue o quiz!</td></tr>`;
+            mostrarAviso(dados.erro || "Erro no servidor.", true);
             return;
         }
 
-        lista.innerHTML = dados.map((r)=>`
-            <tr id="linha-${r.id}">
-                <td>${r.id}</td>
-                <td>${esc(r.nome)}</td>
-                <td>${r.pontos}/${r.total_questoes}</td>
-                <td>${esc(r.resultado)}</td>
-                <td class="acoes">
+        atualizarNumeros(dados);
+
+        if(dados.length === 0){
+            lista.innerHTML = `
+                <div class="vazio">
+                    <strong>🎤</strong>
+                    Nenhum resultado salvo ainda. Jogue o quiz!
+                </div>`;
+            return;
+        }
+
+        lista.innerHTML = dados.map((r, i)=>`
+            <div class="item ${i === 0 ? "top1" : ""}" id="linha-${r.id}" style="animation-delay:${i * 0.05}s">
+                <div class="posicao">${posicaoTexto(i + 1)}</div>
+                <div class="avatar">${esc(String(r.nome).trim().charAt(0).toUpperCase())}</div>
+                <div class="info">
+                    <div class="nome">${esc(r.nome)}</div>
+                    <div class="msg">${esc(r.resultado)}</div>
+                </div>
+                <div class="estrelas">${estrelas(r.pontos, r.total_questoes || 5)}</div>
+                <div class="pontos">${r.pontos}/${r.total_questoes || 5}</div>
+                <div class="acoes">
                     <button class="btn editar" onclick="editar(${r.id})">Editar</button>
                     <button class="btn excluir" onclick="excluir(${r.id})">Excluir</button>
-                </td>
-            </tr>
+                </div>
+            </div>
         `).join("");
 
     }
@@ -52,21 +90,25 @@ async function carregar(){
     }
 }
 
-// ---------- UPDATE: troca a linha por campos editáveis ----------
+// ---------- UPDATE: troca o cartão por campos editáveis ----------
 async function editar(id){
 
     const resp = await fetch(`${API}/${id}`);
     const r = await resp.json();
 
-    document.getElementById(`linha-${id}`).innerHTML = `
-        <td>${r.id}</td>
-        <td><input type="text" id="edit-nome" maxlength="50" value="${esc(r.nome).replace(/"/g, "&quot;")}"></td>
-        <td><input type="number" id="edit-pontos" min="0" max="5" value="${r.pontos}"></td>
-        <td>${esc(r.resultado)}</td>
-        <td class="acoes">
+    const linha = document.getElementById(`linha-${id}`);
+
+    linha.classList.add("editando");
+
+    linha.innerHTML = `
+        <div class="campo">
+            <input type="text" id="edit-nome" maxlength="50" placeholder="Nome" value="${esc(r.nome).replace(/"/g, "&quot;")}">
+            <input type="number" id="edit-pontos" min="0" max="5" value="${r.pontos}">
+        </div>
+        <div class="acoes">
             <button class="btn salvar" onclick="salvar(${r.id})">Salvar</button>
             <button class="btn cancelar" onclick="carregar()">Cancelar</button>
-        </td>
+        </div>
     `;
 }
 
