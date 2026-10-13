@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+
+    background: linear-gradient(
+        135deg,
+        #cdb8f0,
+        #d8c3ff,
+        #b99ce5
+    );
+}
+
+.container {
+    width: 520px;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 25px;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.form-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-title h1 {
+    font-size: 32px;
+    color: #7c3aed;
+    margin-bottom: 8px;
+}
+
+.form-title p {
+    font-size: 16px;
+    color: #666;
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group > label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"] {
+    width: 100%;
+    padding: 14px 16px;
+
+    border: 2px solid #ddd;
+    border-radius: 10px;
+
+    font-size: 16px;
+    outline: none;
+
+    transition: 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus {
+    border-color: #9c77cb;
+    box-shadow: 0 0 8px rgba(156, 119, 203, 0.2);
+}
+
+.sexo-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 10px 15px;
+
+    border: 2px solid #ddd;
+    border-radius: 10px;
+
+    cursor: pointer;
+    color: #444;
+}
+
+.radio-label input {
+    accent-color: #9c77cb;
+}
+
+.radio-label:has(input:checked) {
+    border-color: #9c77cb;
+    background: #f3edfc;
+}
+
+.btn-container {
+    margin-top: 30px;
+}
+
+.btn-register {
+    width: 100%;
+    padding: 16px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: linear-gradient(
+        180deg,
+        #cdb2f3,
+        #9c77cb
+    );
+
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.btn-register:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.25);
+}
+
+#mensagem {
+    text-align: center;
+    margin-top: 20px;
+    color: #d33;
+}
+
+.container{
+    background:#f3f3f3;
+    border-radius:30px;
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados - Quiz Belieber</title>
+
+    <link rel="stylesheet" href="/css/resultados.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="card">
+
+        <h1>RESULTADOS <span>SALVOS</span></h1>
+
+        <p class="sub">Dados guardados no banco de dados. Você pode editar ou excluir cada registro.</p>
+
+        <p id="aviso" class="aviso"></p>
+
+        <div class="tabela-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>Pontos</th>
+                        <th>Resultado</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="lista"></tbody>
+            </table>
+        </div>
+
+        <div class="rodape">
+            <a href="/index.html">Jogar o quiz</a>
+        </div>
+
+    </div>
+
+    <script src="/js/resultados.js"></script>
+
+</body>
+
+</html>

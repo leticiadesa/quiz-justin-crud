@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Quiz Belieber</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <div class="container cadastro-container">
+
+        <div class="form-title">
+            <h1>QUIZ BELIEBER</h1>
+            <p>Preencha seus dados para começar</p>
+        </div>
+
+        <form id="cadastroForm">
+
+            <div class="form-group">
+                <label for="nome">Nome Completo</label>
+
+                <input
+                    type="text"
+                    id="nome"
+                    name="nome"
+                    placeholder="Digite seu nome"
+                    required
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label for="email">Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="seu.email@exemplo.com"
+                    required
+                >
+            </div>
+
+
+            <div class="form-group">
+                <label for="idade">Idade</label>
+
+                <input
+                    type="number"
+                    id="idade"
+                    name="idade"
+                    placeholder="Digite sua idade"
+                    min="1"
+                    max="120"
+                    required
+                >
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Sexo</label>
+
+                <div class="sexo-group">
+
+                    <label class="radio-label">
+                        <input
+                            type="radio"
+                            name="sexo"
+                            value="Masculino"
+                            required
+                        >
+                        <span>Masculino</span>
+                    </label>
+
+
+                    <label class="radio-label">
+                        <input
+                            type="radio"
+                            name="sexo"
+                            value="Feminino"
+                        >
+                        <span>Feminino</span>
+                    </label>
+
+
+                    <label class="radio-label">
+                        <input
+                            type="radio"
+                            name="sexo"
+                            value="Outro"
+                        >
+                        <span>Outro</span>
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <div class="btn-container">
+
+                <button
+                    type="button"
+                    class="btn-register"
+                    onclick="registrarUsuario()"
+                >
+                    ▶ COMEÇAR QUIZ
+                </button>
+
+            </div>
+
+        </form>
+
+        <p id="mensagem"></p>
+
+    </div>
+
+
+    <script src="login.js"></script>
+
+</body>
+</html>
