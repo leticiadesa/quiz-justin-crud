@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultados - Quiz Belieber</title>
+    <title>Ranking - Quiz Belieber</title>
 
     <link rel="stylesheet" href="/css/resultados.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,26 +14,34 @@
 
     <div class="card">
 
-        <h1>RESULTADOS <span>SALVOS</span></h1>
+        <div class="fotos">
+            <img src="/img/justin2.jpg" alt="Justin bebê">
+            <img src="/img/justin1.webp" alt="Justin jovem">
+            <img src="/img/justin.webp" alt="Justin adulto">
+        </div>
 
-        <p class="sub">Dados guardados no banco de dados. Você pode editar ou excluir cada registro.</p>
+        <h1>RANKING DOS <span>BELIEBERS</span></h1>
+
+        <p class="sub">Veja quem mais conhece o Justin. Você pode editar ou excluir cada resultado.</p>
+
+        <div class="stats">
+            <div class="stat">
+                <strong id="stat-total">0</strong>
+                <span>participantes</span>
+            </div>
+            <div class="stat">
+                <strong id="stat-media">0</strong>
+                <span>média de pontos</span>
+            </div>
+            <div class="stat">
+                <strong id="stat-melhor">0/5</strong>
+                <span>melhor nota</span>
+            </div>
+        </div>
 
         <p id="aviso" class="aviso"></p>
 
-        <div class="tabela-wrap">
-            <table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Nome</th>
-                        <th>Pontos</th>
-                        <th>Resultado</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody id="lista"></tbody>
-            </table>
-        </div>
+        <div id="lista" class="lista"></div>
 
         <div class="rodape">
             <a href="/index.html">Jogar o quiz</a>
