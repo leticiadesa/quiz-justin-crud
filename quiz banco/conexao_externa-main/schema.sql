@@ -1,4 +1,4 @@
--- Use apenas se a tabela ainda não existir no seu banco.
+
 CREATE DATABASE IF NOT EXISTS quiz_belieber;
 USE quiz_belieber;
 
@@ -9,3 +9,5 @@ CREATE TABLE IF NOT EXISTS resultados (
     total_questoes INT          NOT NULL,
     resultado      VARCHAR(100) NOT NULL
 );
+
+SELECT * FROM quiz_belieber.resultados;
